@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning - Point Classification AI</title>
+    <style>
+        body {
+            font-family: Roboto;
+        }
+        .outputStats {
+            font-family: monospace;
+            font-size: x-large;
+        }
+        #preview-svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            outline: 1px solid #0a724f;
+            outline: 1px solid black;
+            cursor: grab;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body contenteditable>
+    <h1>My Machine is Learning!</h1>
+    <p>I have Built an AI which is learning and dividing red and blue colors using a line Separator.</p>
+    <p>Initially a line is Placed randomly on canvas. As an AI is becoming Intelligent, line will place it self in an orientation such that it will divide both the colors separately</p>
+    <div id="preview">
+        <svg viewBox="0 0 500 500" width="500" height="500" id="preview-svg"></svg>
+    </div>
+    <div class="outputStats">
+        <div>Error: <span id="error">None</span></div>
+        
+    </div>
+    <div class="ctrl-btn">
+        <button id="refresh-btn">Refresh Points</button>
+        <button id="training-tgl-btn">Start Training</button>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
