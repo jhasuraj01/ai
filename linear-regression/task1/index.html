@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 1 - Predict Frequency of tuning Fork of Unknown Labelled Frequency</title>
+    <meta name="description" content="This AI will predict the frequency (of a tuning forks of unknown frequency) of the fundamental mode of vibration of a stretched string, fixed at two ends where the length of the vibrating string (in resonance) will be given.">
+    <style>
+        body {
+            font-family: Roboto;
+        }
+        .outputStats {
+            font-family: monospace;
+            font-size: x-large;
+        }
+        #preview-svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            outline: 1px solid #0a724f;
+            outline: 1px solid black;
+            cursor: grab;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predict Frequency of tuning Fork of Unknown Labelled Frequency</h1>
+    <p>This AI will predict the frequency (of a tuning forks of unknown frequency) of the fundamental mode of vibration of a stretched string, fixed at two ends where the length of the vibrating string (in resonance) will be given.</p>
+    <div id="preview">
+        <svg viewBox="0 0 500 500" width="500" height="500" id="preview-svg"></svg>
+    </div>
+    <hr>
+    <div class="outputStats">
+        <div>Slope: <span id="slope">None</span></div>
+        <div>Y-Intercept: <span id="y-intercept">None</span></div>
+        <div>Avg Error: <span id="error">None</span></div>
+    </div>
+    <hr>
+    <div id="predict-cntr" style="opacity: 0; transition: all 0.3s ease;">
+        <label for="predict-input">Input Length (cm):</label>
+        <input type="number" id="predict-input">
+        <br>
+        <span>Pridicted Frequency: </span>
+        <output id="predict-output">None</output>
+    </div>
+    <hr>
+    <script>
+        const slope_elm = document.getElementById("slope");
+        const y_intercept_elm = document.getElementById("y-intercept");
+        const error_elm = document.getElementById("error");
+        const predict_cntr = document.getElementById("predict-cntr");
+        const predict_output = document.getElementById("predict-output");
+        document.getElementById("predict-input").addEventListener("input", (eve) => {
+            predict_output.innerText = predict(Number(eve.currentTarget.value), slope, intercept)
+        })
+    </script>
+    <script src="./plot.js"></script>
+    <script src="./predictor.js"></script>
+</body>
+</html>
