@@ -6,7 +6,55 @@
     <title>Task 2 - Multivariate Linear Regression Problem 1 </title>
 </head>
 <body>
-    <button id="init" style="padding: 1em;">init</button>
+    <button id="init" style="padding: 1em;">Start Solving</button>
+    <h3 id="state-header">State: Waiting</h3>
+    <h3>Real Weights</h3>
+    <div id="real-weights"></div>
+    <h3>Mean Squared Error</h3>
+    <div id="MSError"></div>
+    <h3>Predicted Weights</h3>
+    <div id="weights-output">
+    </div>
+    <script>
+        const weightsOutputCntr_elm = document.getElementById("weights-output");
+        const realWeightsCntr_elm = document.getElementById("real-weights");
+        const init_btn = document.getElementById('init');
+        const stateHeader = document.getElementById('state-header');
+        const MSError_elm = document.getElementById("MSError");
+
+        let weightsOutput_elmArray;
+        const setupOutputDisplay = (info, initialWeights, cost) => {
+            weightsOutput_elmArray = [];
+            weightsOutputCntr_elm.innerHTML = '';
+            realWeightsCntr_elm.innerHTML = '';
+            init_btn.disabled = true;
+            stateHeader.innerText = 'State: Solving';
+            const df = {
+                answer: new DocumentFragment(), 
+                result: new DocumentFragment()
+            }
+            for (let i = 0; i < initialWeights.length; i++) {
+                const w_ans = document.createElement('div');
+                w_ans.innerText = `Weight ${i} = ${info.weights[i]}`;
+                
+                const w_init = document.createElement('div');
+                w_init.innerText = `Predicted Weight ${i} = ${initialWeights[i][0]}`;
+                
+                weightsOutput_elmArray.push(w_init);
+                df.answer.append(w_ans);
+                df.result.append(w_init);
+            }
+            weightsOutputCntr_elm.append(df.result);
+            realWeightsCntr_elm.append(df.answer);
+            MSError_elm.innerText = cost;
+        }
+        const displayOutput = (WEIGHTS, MSError) => {
+            WEIGHTS.forEach((w, i) => {
+                weightsOutput_elmArray[i].innerText = `Predicted Weight ${i} = ${w[0]}`;
+            });
+            MSError_elm.innerText = MSError;
+        }
+    </script>
     <script src="./matrix.js"></script>
     <script src="./mlrm.js"></script>
 </body>
