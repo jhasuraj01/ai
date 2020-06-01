@@ -4,8 +4,8 @@
     }
 
     /**
-     * @param {Array} MAT 
-     * @returns boolen (true or false)
+     * @param {Array< Array <Number> >} MAT - A Matrix
+     * @returns {Array< Array <Number> >} A Transpose of Matrix
      */
     Matrix.prototype.transpose = Matrix.prototype.T = function (MAT) {
         // const MAT_H = MAT.length;
@@ -14,9 +14,20 @@
 
         return new Array(MAT[0].length).fill(null).map((n, r) => new Array(MAT.length).fill(null).map((n, c) => MAT[c][r]))
     }
+
+    /**
+     * @param {Array< Array <Number> >} MAT1 - First Matrix
+     * @param {Array< Array <Number> >} MAT2 - Second Matrix
+     * @returns {Array< Array <Number> >} Resultant Matrix by subtracting each element of MAT1 by corresponding element of MAT2
+     */
     Matrix.prototype.subtract = Matrix.prototype.S = function (MAT1, MAT2) {
         return MAT1.map((row, ri) => row.map((elm, ci) => elm - MAT2[ri][ci]));
     }
+
+    /**
+     * @param {Array< Array <Number> >} MAT1 - First Matrix
+     * @param {Array< Array <Number> >} MAT2 - Second Matrix
+     */
     Matrix.prototype.multiply = Matrix.prototype.M = function (MAT1, MAT2) {
         if (MAT1[0].length !== MAT2.length) {
             console.error(MAT1, "Can Not Be Multiplied By", MAT2);
@@ -33,9 +44,15 @@
         }
         return result;
     }
+
+    /**
+     * @param {Number} c - A contant Number to multiply
+     * @param {Array< Array <Number> >} MAT - Matrix
+     */
     Matrix.prototype.multiplyByConstant = Matrix.prototype.MBC = function (c, MAT) {
         return MAT.map(row => row.map(elm => elm * c));
     }
+
     // TO DO: logic for determinant
     Matrix.prototype.determinant = Matrix.prototype.det = function (MAT) {
         if(MAT.length !== MAT[0].length) {
@@ -43,6 +60,7 @@
             throw new Error("Determinent of a Matrix is Null")
         }
     }
+    
     // TO DO: logic for inverse
     Matrix.prototype.inverse = function (MAT) {
         // const determinant = this.det();
