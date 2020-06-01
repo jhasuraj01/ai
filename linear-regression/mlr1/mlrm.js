@@ -132,6 +132,7 @@ const train = ({info, Y, X}) => {
 }
 
 const init = async () => {
+    stateHeader.innerText = 'State: Loading Data...';
     const { info, dataset } = JSON.parse(await (await fetch('mlrp1.json')).text());
     
     const dataLength = info.length;
